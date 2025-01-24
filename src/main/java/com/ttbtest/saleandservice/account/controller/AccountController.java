@@ -10,7 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/customers")
+@RequestMapping("/api/account")
 public class AccountController {
 
     @Autowired
@@ -18,7 +18,7 @@ public class AccountController {
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getAccount(@PathVariable Long id){
-        return new ResponseEntity<>(new ResponseFormat(accountService.getCustomerById(id)), HttpStatus.OK);
+        return new ResponseEntity<>(new ResponseFormat(accountService.getAccountById(id)), HttpStatus.OK);
     }
 
     @PostMapping()
@@ -26,9 +26,9 @@ public class AccountController {
         return new ResponseEntity<>(new ResponseFormat(accountService.createAccount(req)), HttpStatus.OK);
     }
 
-    @PostMapping()
+    @PutMapping()
     public ResponseEntity<?> updateAccount(@RequestBody AccountDTO req){
-        return new ResponseEntity<>(new ResponseFormat(accountService.createAccount(req)), HttpStatus.OK);
+        return new ResponseEntity<>(new ResponseFormat(accountService.updateAccount(req)), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
